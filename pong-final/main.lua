@@ -396,10 +396,10 @@ end
     Functions that evaluates Player 1 behaviour when Machine Mode is ON
 ]]
 function ControlMachinePlayer()
-    if player1.y-ball.y > 0 then
-        player1.dy = -PADDLE_SPEED
-    elseif player1.y-ball.y < 0 then
-        player1.dy = PADDLE_SPEED
+    if player1.y-ball.y > 1 then
+        player1.dy = -PADDLE_SPEED * 0.63
+    elseif player1.y-ball.y < -1 then
+        player1.dy = PADDLE_SPEED * 0.63
     else
         player1.dy = 0
     end
