@@ -233,14 +233,17 @@ function love.update(dt)
     -- paddles can move no matter what state we're in
     --
     -- player 1
-    if love.keyboard.isDown('w') then
-        player1.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('s') then
-        player1.dy = PADDLE_SPEED
+    if machineMode == 'ON' then
+        ControlMachinePlayer()
     else
-        player1.dy = 0
+        if love.keyboard.isDown('w') then
+            player1.dy = -PADDLE_SPEED
+        elseif love.keyboard.isDown('s') then
+            player1.dy = PADDLE_SPEED
+        else
+            player1.dy = 0
+        end
     end
-
     -- player 2
     if love.keyboard.isDown('up') then
         player2.dy = -PADDLE_SPEED
@@ -388,3 +391,16 @@ function displayMachineMode()
     love.graphics.print('MACHINE MODE: ' .. machineMode, VIRTUAL_WIDTH-90, 10)
     love.graphics.setColor(255/255, 255/255, 255/255, 255/255)
 end
+
+--[[
+    Functions that evaluates Player 1 behaviour when Machine Mode is ON
+]]
+function ControlMachinePlayer()
+    if player1.y-ball.y > 0 then
+        player1.dy = -PADDLE_SPEED
+    elseif player1.y-ball.y < 0 then
+        player1.dy = PADDLE_SPEED
+    else
+        player1.dy = 0
+    end
+end    
