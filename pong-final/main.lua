@@ -115,6 +115,10 @@ function love.load()
     -- 3. 'play' (the ball is in play, bouncing between paddles)
     -- 4. 'done' (the game is over, with a victor, ready for restart)
     gameState = 'start'
+
+    -- machineMode variable allow players to choose either playing against machine 
+    -- or against a human.
+    machineMode = 'OFF'
 end
 
 --[[
@@ -338,6 +342,9 @@ function love.draw()
     -- display FPS for debugging; simply comment out to remove
     displayFPS()
 
+    -- display Machine Mode
+    displayMachineMode()
+
     -- end our drawing to push
     push:finish()
 end
@@ -362,5 +369,14 @@ function displayFPS()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 255/255, 0, 255/255)
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 10, 10)
-    love.graphics.setColor(255, 255, 255, 255)
+end
+
+--[[
+    Renders whether the machineMode is on or off, in toher words the Game Mode
+]]
+function displayMachineMode()
+    love.graphics.setFont(smallFont)
+    love.graphics.setColor(0, 0, 255/255, 255/255)
+    love.graphics.print('MACHINE MODE: ' .. machineMode, VIRTUAL_WIDTH-90, 10)
+    love.graphics.setColor(255/255, 255/255, 255/255, 255/255)
 end
