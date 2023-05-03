@@ -297,7 +297,7 @@ function love.keypressed(key)
             end
         end
     -- Toggles machine mode functionallity 
-    elseif key == 'space' then
+    elseif key == 'space' and gameState == 'start' then
         if machineMode == 'OFF' then
             machineMode = 'ON'
         else 
