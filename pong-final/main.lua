@@ -275,7 +275,7 @@ function love.keypressed(key)
     -- transition to the next appropriate state
     elseif key == 'enter' or key == 'return' then
         if gameState == 'start' then
-            gameState = 'serve'
+            gameState = 'serve'    
         elseif gameState == 'serve' then
             gameState = 'play'
         elseif gameState == 'done' then
@@ -296,6 +296,13 @@ function love.keypressed(key)
                 servingPlayer = 1
             end
         end
+    -- Toggles machine mode functionallity 
+    elseif key == 'space' then
+        if machineMode == 'OFF' then
+            machineMode = 'ON'
+        else 
+            machineMode = 'OFF'
+        end
     end
 end
 
@@ -315,6 +322,7 @@ function love.draw()
         love.graphics.setFont(smallFont)
         love.graphics.printf('Welcome to Pong!', 0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.printf('Press Enter to begin!', 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Space to toggle Machine Mode!', 0, 30, VIRTUAL_WIDTH, 'center')
     elseif gameState == 'serve' then
         -- UI messages
         love.graphics.setFont(smallFont)
